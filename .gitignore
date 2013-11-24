@@ -1,0 +1,8 @@
+*.dll
+*.sublime-project
+*.sublime-workspace
+*.o
+include/*
+/lib
+html
+*.exe
