@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 2.8)
 
 project("LuaDust Unit Test")
 
-set(EXECUTABLE_OUTPUT_PATH ../bin/${CMAKE_BUILD_TYPE})
+if(NOT DEFINED OUT_PATH)
+    set(OUT_PATH bin/${CMAKE_BUILD_TYPE})
+endif(NOT DEFINED OUT_PATH)
+
+set(EXECUTABLE_OUTPUT_PATH ${OUTPUT_PATH})
 
 set(LUA_PATH ${LUA_PATH} CACHE STRING "Path to the lua directory" FORCE)
 
