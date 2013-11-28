@@ -2,26 +2,35 @@ cmake_minimum_required(VERSION 2.8)
 
 project(LuaDust)
 
-if(NOT DEFINED OUT_PATH)
-    set(OUT_PATH bin/${CMAKE_BUILD_TYPE})
-endif(NOT DEFINED OUT_PATH)
+set(OUT_PATH ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 set(LIBRARY_OUTPUT_PATH ${OUT_PATH})
 
-set(LUA_PATH ${LUA_PATH} CACHE STRING "Path to the lua directory" FORCE)
+set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE STRING "Path to the lua include directory" FORCE)
+
+set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE STRING "Path to the lua lib directory" FORCE)
 
 LINK_DIRECTORIES(${LUA_PATH})
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
+set(LUA_DUST_LIB lua_dust)
+set(LUA_DUST_LIB ${LUA_DUST_LIB} PARENT_SCOPE)
+
+message(STATUS "LUA_DUST_LIB=${LUA_DUST_LIB}")
+
+set(LUA_DUST_INCLUDE ${CMAKE_CURRENT_LIST_DIR}/hdr)
+set(LUA_DUST_INCLUDE ${LUA_DUST_INCLUDE} PARENT_SCOPE)
+
 include_directories(
-        hdr/
+        ${LUA_DUST_INCLUDE}
 	
-        ${LUA_PATH}
+        ${LUA_INCLUDE_PATH}
 )
 
+
 link_directories(
-	   ${LUA_PATH}
+	   ${LUA_LIB_PATH}
 )
 
 file(
@@ -35,7 +44,7 @@ file(
 
 add_library(
 
-        lua_dust
+        ${LUA_DUST_LIB}
 
         SHARED
 
@@ -44,7 +53,7 @@ add_library(
 )
 
 target_link_libraries(
-	lua_dust
+	${LUA_DUST_LIB}
 
 	lua52
 )

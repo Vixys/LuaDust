@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 2.8)
 
 project("LuaDust Unit Test")
 
-if(NOT DEFINED OUT_PATH)
-    set(OUT_PATH bin/${CMAKE_BUILD_TYPE})
-endif(NOT DEFINED OUT_PATH)
+set(OUT_PATH ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 set(EXECUTABLE_OUTPUT_PATH ${OUTPUT_PATH})
 
-set(LUA_PATH ${LUA_PATH} CACHE STRING "Path to the lua directory" FORCE)
+set(LUA_DUST_UNIT_TEST lua_dust_test)
+
+set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE STRING "Path to the lua include directory" FORCE)
+set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE STRING "Path to the lua lib directory" FORCE)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
@@ -17,11 +18,11 @@ include_directories(
 
         ../hdr/
 	
-        ${LUA_PATH}
+        ${LUA_INCLUDE_PATH}
 )
 
 link_directories(
-		${LUA_PATH}
+		${LUA_LIB_PATH}
 
         ${EXECUTABLE_OUTPUT_PATH}
 )
@@ -37,21 +38,21 @@ file(
 
 add_executable(
 
-        lua_dust_test
+        ${LUA_DUST_UNIT_TEST}
 
         ${lua_dust_test_source_files}
 
 )
 
 target_link_libraries(
-        lua_dust_test
+        ${LUA_DUST_UNIT_TEST}
 	
-    	lua_dust
+    	${LUA_DUST_LIB}
 
 		lua52
 )
 
-add_custom_command(TARGET lua_dust_test POST_BUILD
-                    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
-                    COMMAND ${CMAKE_COMMAND} -E copy ../test/doFile_test.lua ./
-                    COMMAND lua_dust_test)
+add_custom_command(TARGET ${LUA_DUST_UNIT_TEST} POST_BUILD
+                    WORKING_DIRECTORY ${OUT_PATH}
+                    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_LIST_DIR}/doFile_test.lua ./
+                    COMMAND ${LUA_DUST_UNIT_TEST})
