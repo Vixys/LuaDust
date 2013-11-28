@@ -1,6 +1,6 @@
 #include <cstring>
 
-#include "include/catch.hpp"
+#include "catch.hpp"
 #include "LuaDust.hpp"
 
 void writeint(int str)

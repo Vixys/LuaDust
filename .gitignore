@@ -6,3 +6,13 @@ include/*
 /lib
 html
 *.exe
+
+*.a
+
+*.bin
+CMakeFiles
+
+CMakeCache.txt
+
+bin
+*.cmake
