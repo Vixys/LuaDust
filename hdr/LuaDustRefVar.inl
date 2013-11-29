@@ -129,3 +129,13 @@ void LuaDustRefVar<std::string>::pushRef()
 	lua_pushstring(this->_dust->getState(), this->_ref->c_str());
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
+
+template <>
+std::string LuaDustRefVar<std::string>::getStringValue() const
+{
+	std::stringstream out;
+	
+	out << "\"" << *this->_ref << "\"";
+
+	return out.str();
+}

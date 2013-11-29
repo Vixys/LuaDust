@@ -1,6 +1,8 @@
 #ifndef LUA_DUST_REF_VAR_HPP
 #define LUA_DUST_REF_VAR_HPP
 
+#include <sstream>
+
 #include "LuaDustRef.hpp"
 
 template <typename Type>
@@ -21,6 +23,16 @@ class LuaDustRefVar : public LuaDustRef
 		{
 			return this->_ref;
 		}
+
+		std::string getStringValue() const
+		{
+			std::stringstream out;
+			
+			out << *this->_ref;
+
+			return out.str();
+		}
+
 
 	private:
 

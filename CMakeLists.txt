@@ -17,8 +17,6 @@ set(CMAKE_CXX_FLAGS "-std=c++11")
 set(LUA_DUST_LIB lua_dust)
 set(LUA_DUST_LIB ${LUA_DUST_LIB} PARENT_SCOPE)
 
-message(STATUS "LUA_DUST_LIB=${LUA_DUST_LIB}")
-
 set(LUA_DUST_INCLUDE ${CMAKE_CURRENT_LIST_DIR}/hdr)
 set(LUA_DUST_INCLUDE ${LUA_DUST_INCLUDE} PARENT_SCOPE)
 
@@ -51,6 +49,8 @@ add_library(
         ${source_files}
 
 )
+
+set_target_properties(${LUA_DUST_LIB} PROPERTIES PREFIX "")
 
 target_link_libraries(
 	${LUA_DUST_LIB}

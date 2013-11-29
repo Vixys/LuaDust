@@ -25,7 +25,7 @@ class LuaDust
 		LuaDustFunction<RetType, Args...> *addFunction(const std::string &name, RetType (*)(Args...));
 
 		template <typename Type>
-		bool addRefGlobal(const std::string &name, Type *value);
+		LuaDustRef *addRefGlobal(const std::string &name, Type *value);
 
 		bool addGlobal(const std::string &name, int value);
 		bool addGlobal(const std::string &name, double value);

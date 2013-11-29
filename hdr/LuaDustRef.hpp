@@ -13,6 +13,7 @@ class LuaDustRef
 
 		virtual const std::string &getName() const = 0;
 		virtual const void *getRefPtr() const = 0;
+		virtual std::string getStringValue() const = 0;
 
 	private:
 
