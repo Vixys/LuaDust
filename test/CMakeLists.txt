@@ -4,12 +4,12 @@ project("LuaDust Unit Test")
 
 set(OUT_PATH ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
-set(EXECUTABLE_OUTPUT_PATH ${OUTPUT_PATH})
+set(EXECUTABLE_OUTPUT_PATH ${OUT_PATH})
 
 set(LUA_DUST_UNIT_TEST lua_dust_test)
 
-set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE STRING "Path to the lua include directory" FORCE)
-set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE STRING "Path to the lua lib directory" FORCE)
+set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE PATH "Path to the lua include directory" FORCE)
+set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE PATH "Path to the lua lib directory" FORCE)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
 

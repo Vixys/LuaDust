@@ -11,7 +11,7 @@ void LuaDustRefVar<Type>::updateRef()
 }
 
 template <>
-LuaDustRefVar<int>::LuaDustRefVar(LuaDust *dust, const std::string &name, int *ref)
+inline LuaDustRefVar<int>::LuaDustRefVar(LuaDust *dust, const std::string &name, int *ref)
 {
 	this->_dust = dust;
 	this->_ref = ref;
@@ -21,21 +21,21 @@ LuaDustRefVar<int>::LuaDustRefVar(LuaDust *dust, const std::string &name, int *r
 }
 
 template <>
-void LuaDustRefVar<int>::updateRef()
+inline void LuaDustRefVar<int>::updateRef()
 {
 	lua_getglobal(this->_dust->getState(), this->_name.c_str());
 	*this->_ref = lua_tointeger(this->_dust->getState(), -1);
 }
 
 template <>
-void LuaDustRefVar<int>::pushRef()
+inline void LuaDustRefVar<int>::pushRef()
 {
 	lua_pushinteger(this->_dust->getState(), *this->_ref);
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
 
 template <>
-LuaDustRefVar<float>::LuaDustRefVar(LuaDust *dust, const std::string &name, float *ref)
+inline LuaDustRefVar<float>::LuaDustRefVar(LuaDust *dust, const std::string &name, float *ref)
 {
 	this->_dust = dust;
 	this->_ref = ref;
@@ -45,21 +45,21 @@ LuaDustRefVar<float>::LuaDustRefVar(LuaDust *dust, const std::string &name, floa
 }
 
 template <>
-void LuaDustRefVar<float>::updateRef()
+inline void LuaDustRefVar<float>::updateRef()
 {
 	lua_getglobal(this->_dust->getState(), this->_name.c_str());
 	*this->_ref = lua_tonumber(this->_dust->getState(), -1);
 }
 
 template <>
-void LuaDustRefVar<float>::pushRef()
+inline void LuaDustRefVar<float>::pushRef()
 {
 	lua_pushnumber(this->_dust->getState(), *this->_ref);
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
 
 template <>
-LuaDustRefVar<double>::LuaDustRefVar(LuaDust *dust, const std::string &name, double *ref)
+inline LuaDustRefVar<double>::LuaDustRefVar(LuaDust *dust, const std::string &name, double *ref)
 {
 	this->_dust = dust;
 	this->_ref = ref;
@@ -69,21 +69,21 @@ LuaDustRefVar<double>::LuaDustRefVar(LuaDust *dust, const std::string &name, dou
 }
 
 template <>
-void LuaDustRefVar<double>::updateRef()
+inline void LuaDustRefVar<double>::updateRef()
 {
 	lua_getglobal(this->_dust->getState(), this->_name.c_str());
 	*this->_ref = lua_tonumber(this->_dust->getState(), -1);
 }
 
 template <>
-void LuaDustRefVar<double>::pushRef()
+inline void LuaDustRefVar<double>::pushRef()
 {
 	lua_pushnumber(this->_dust->getState(), *this->_ref);
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
 
 template <>
-LuaDustRefVar<char*>::LuaDustRefVar(LuaDust *dust, const std::string &name, char **ref)
+inline LuaDustRefVar<char*>::LuaDustRefVar(LuaDust *dust, const std::string &name, char **ref)
 {
 	this->_dust = dust;
 	this->_ref = ref;
@@ -93,21 +93,21 @@ LuaDustRefVar<char*>::LuaDustRefVar(LuaDust *dust, const std::string &name, char
 }
 
 template <>
-void LuaDustRefVar<char*>::pushRef()
+inline void LuaDustRefVar<char*>::pushRef()
 {
 	lua_pushstring(this->_dust->getState(), *this->_ref);
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
 
 template <>
-void LuaDustRefVar<char*>::updateRef()
+inline void LuaDustRefVar<char*>::updateRef()
 {
 	lua_getglobal(this->_dust->getState(), this->_name.c_str());
 	*this->_ref = const_cast<char*>(lua_tostring(this->_dust->getState(), -1));
 }
 
 template <>
-LuaDustRefVar<std::string>::LuaDustRefVar(LuaDust *dust, const std::string &name, std::string *ref)
+inline LuaDustRefVar<std::string>::LuaDustRefVar(LuaDust *dust, const std::string &name, std::string *ref)
 {
 	this->_dust = dust;
 	this->_ref = ref;
@@ -117,21 +117,21 @@ LuaDustRefVar<std::string>::LuaDustRefVar(LuaDust *dust, const std::string &name
 }
 
 template <>
-void LuaDustRefVar<std::string>::updateRef()
+inline void LuaDustRefVar<std::string>::updateRef()
 {
 	lua_getglobal(this->_dust->getState(), this->_name.c_str());
 	*this->_ref = const_cast<char*>(lua_tostring(this->_dust->getState(), -1));
 }
 
 template <>
-void LuaDustRefVar<std::string>::pushRef()
+inline void LuaDustRefVar<std::string>::pushRef()
 {
 	lua_pushstring(this->_dust->getState(), this->_ref->c_str());
 	lua_setglobal(this->_dust->getState(), this->_name.c_str());
 }
 
 template <>
-std::string LuaDustRefVar<std::string>::getStringValue() const
+inline std::string LuaDustRefVar<std::string>::getStringValue() const
 {
 	std::stringstream out;
 	

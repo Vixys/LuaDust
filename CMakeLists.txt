@@ -6,9 +6,9 @@ set(OUT_PATH ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 set(LIBRARY_OUTPUT_PATH ${OUT_PATH})
 
-set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE STRING "Path to the lua include directory" FORCE)
+set(LUA_INCLUDE_PATH ${LUA_INCLUDE_PATH} CACHE PATH "Path to the lua include directory" FORCE)
 
-set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE STRING "Path to the lua lib directory" FORCE)
+set(LUA_LIB_PATH ${LUA_LIB_PATH} CACHE PATH "Path to the lua lib directory" FORCE)
 
 LINK_DIRECTORIES(${LUA_PATH})
 

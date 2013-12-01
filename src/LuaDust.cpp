@@ -74,3 +74,8 @@ bool LuaDust::addGlobal(const std::string &name, const std::string &value)
 	lua_setglobal(this->_state, name.c_str());
     return true;
 }
+
+const std::list<LuaDustRef *> &LuaDust::getReferences() const
+{
+    return this->_refs;
+}

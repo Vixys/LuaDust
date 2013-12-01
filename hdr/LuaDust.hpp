@@ -36,6 +36,8 @@ class LuaDust
 
 		lua_State *getState() const;
 
+		const std::list<LuaDustRef *> &getReferences() const;
+
 	protected:
 		lua_State *_state;
 		std::list<LuaDustRef *> _refs;
