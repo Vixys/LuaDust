@@ -5,6 +5,13 @@ Function<RetType, Args...> *LuaDust::addFunction(const std::string &name, RetTyp
 	return f;
 }
 
+template <typename RetType, typename Class, typename... Args>
+Method<RetType, Class, Args...> *LuaDust::addFunction(const std::string &name, Class *ptr, RetType (Class::*func)(Args...))
+{
+	auto *f = new Method<RetType, Class, Args...>(this, name, ptr, func);
+	return f;
+}
+
 template <typename Type>
 IVarRef *LuaDust::addRefGlobal(const std::string &name, Type *value)
 {

@@ -46,12 +46,21 @@ bool funcdouble(double d)
 class Test
 {
 	int nb;
+	int nb2;
 
 public:
 	Test(LuaDust::LuaDust *dust, int n)
 	{
 		nb = n;
+		nb2 = n;
 		dust->addRefGlobal("number", &this->nb);
+		dust->addFunction("class_add", this, &Test::add);
+		dust->addFunction("class_getNb", this, &Test::getNb2);
+	}
+
+	void add(int n)
+	{
+		this->nb2 += n;
 	}
 
 	void change(LuaDust::LuaDust *dust)
@@ -62,6 +71,11 @@ public:
 	int getNb()
 	{
 		return this->nb;
+	}
+
+	int getNb2()
+	{
+		return this->nb2;
 	}
 };
 
@@ -151,6 +165,10 @@ TEST_CASE("LuaDust class unit test", "[LuaDust]")
 		t.change(&lua);
 		REQUIRE(lua.doString("assert(number == 42)"));
 		REQUIRE(t.getNb() == 42);
+		std::cout << "addr: " << static_cast<void*>(&t) << std::endl;
+		REQUIRE(lua.doString("class_add(41)"));
+		REQUIRE(t.getNb2() == 84);
+		REQUIRE(lua.doString("assert(class_getNb() == 84)"));
 	}
 
 	SECTION("LuaDust::addArray int test")

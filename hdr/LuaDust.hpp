@@ -16,6 +16,7 @@ namespace LuaDust
 {
 
 	template <typename RetType, typename... Args> class Function;
+	template <typename RetType, typename Class, typename... Args> class Method;
 	template <typename Type> class VarRef;
 	template <typename Type> class Array;
 
@@ -27,6 +28,9 @@ namespace LuaDust
 
 			template <typename RetType, typename... Args>
 			Function<RetType, Args...> *addFunction(const std::string &name, RetType (*)(Args...));
+
+			template <typename RetType, typename Class, typename... Args>
+			Method<RetType, Class, Args...> *addFunction(const std::string &name, Class *ptr, RetType (Class::*)(Args...));
 
 			template <typename Type>
 			IVarRef *addRefGlobal(const std::string &name, Type *value);
@@ -57,6 +61,7 @@ namespace LuaDust
 
 #include "VarRef.hpp"
 #include "Function.hpp"
+#include "Method.hpp"
 #include "Array.hpp"
 
 namespace LuaDust
