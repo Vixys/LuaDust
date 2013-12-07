@@ -9,42 +9,59 @@
 
 #include <lua.hpp>
 
-#include "LuaDustRef.hpp"
+#include "IVarRef.hpp"
 #include "LuaDustException.hpp"
 
-template <typename RetType, typename... Args> class LuaDustFunction;
-template <typename Type> class LuaDustRefVar;
-
-class LuaDust
+namespace LuaDust
 {
-	public:
-		LuaDust();
-		~LuaDust();
 
-		template <typename RetType, typename... Args>
-		LuaDustFunction<RetType, Args...> *addFunction(const std::string &name, RetType (*)(Args...));
+	template <typename RetType, typename... Args> class Function;
+	template <typename Type> class VarRef;
+	template <typename Type> class Array;
 
-		template <typename Type>
-		LuaDustRef *addRefGlobal(const std::string &name, Type *value);
+	class LuaDust
+	{
+		public:
+			LuaDust();
+			~LuaDust();
 
-		bool addGlobal(const std::string &name, int value);
-		bool addGlobal(const std::string &name, double value);
-		bool addGlobal(const std::string &name, const std::string &value);
+			template <typename RetType, typename... Args>
+			Function<RetType, Args...> *addFunction(const std::string &name, RetType (*)(Args...));
 
-		bool doFile(const std::string &file);
-		bool doString(const std::string &lua);
+			template <typename Type>
+			IVarRef *addRefGlobal(const std::string &name, Type *value);
 
-		lua_State *getState() const;
+			template <typename Type>
+			Array<Type> *addArray(const std::string &name, Type *value);
 
-		const std::list<LuaDustRef *> &getReferences() const;
+			bool addGlobal(const std::string &name, bool value);
+			bool addGlobal(const std::string &name, int value);
+			bool addGlobal(const std::string &name, double value);
+			bool addGlobal(const std::string &name, const char *value);
+			bool addGlobal(const std::string &name, const std::string &value);
 
-	protected:
-		lua_State *_state;
-		std::list<LuaDustRef *> _refs;
-};
+			bool doFile(const std::string &file);
+			bool doString(const std::string &lua);
 
-#include "LuaDustRefVar.hpp"
-#include "LuaDustFunction.hpp"
-#include "LuaDust.inl"
+			lua_State *getState() const;
+
+			const std::list<IVarRef *> &getReferences() const;
+
+		protected:
+			lua_State *_state;
+			std::list<IVarRef *> _refs;
+	};
+
+} // End LuaDust namespace
+
+
+#include "VarRef.hpp"
+#include "Function.hpp"
+#include "Array.hpp"
+
+namespace LuaDust
+{
+	#include "LuaDust.inl"
+} // End LuaDust namespace
 
 #endif // LUA_DUST_HPP

@@ -1,16 +1,21 @@
 #include "LuaDustException.hpp"
 
-LuaDustException::LuaDustException(const std::string &error)
+namespace LuaDust
 {
-	this->_message = error;
-}
+	LuaDustException::LuaDustException(const std::string &error)
+	{
+		this->_message = error;
+	}
 
-LuaDustException::~LuaDustException() throw()
-{
+	LuaDustException::~LuaDustException() throw()
+	{
 
-}
+	}
 
-const char * LuaDustException::what() const throw()
-{
-	return this->_message.c_str();
-}
+	const char * LuaDustException::what() const throw()
+	{
+		std::string msg = "LuaDustException: " + this->_message;
+
+		return msg.c_str();
+	}
+} // End LuaDust namespace

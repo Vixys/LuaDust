@@ -4,17 +4,20 @@
 #include <exception>
 #include <string>
 
-class LuaDustException : public std::exception
+namespace LuaDust
 {
-	public:
-		LuaDustException(const std::string &error);
-		virtual ~LuaDustException() throw();
+	class LuaDustException : public std::exception
+	{
+		public:
+			LuaDustException(const std::string &error);
+			virtual ~LuaDustException() throw();
 
-		virtual const char * what() const throw();
+			virtual const char * what() const throw();
 
-	private:
-		std::string _message;
+		private:
+			std::string _message;
 
-};
+	};
+} // End LuaDust namespace
 
 #endif // LUA_DUST_EXCEPTION_HPP
