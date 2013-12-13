@@ -165,7 +165,6 @@ TEST_CASE("LuaDust class unit test", "[LuaDust]")
 		t.change(&lua);
 		REQUIRE(lua.doString("assert(number == 42)"));
 		REQUIRE(t.getNb() == 42);
-		std::cout << "addr: " << static_cast<void*>(&t) << std::endl;
 		REQUIRE(lua.doString("class_add(41)"));
 		REQUIRE(t.getNb2() == 84);
 		REQUIRE(lua.doString("assert(class_getNb() == 84)"));

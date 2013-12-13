@@ -95,8 +95,4 @@ namespace LuaDust
         return true;
     }
 
-    const std::list<IVarRef *> &LuaDust::getReferences() const
-    {
-        return this->_refs;
-    }
 } // End LuaDust namespace
