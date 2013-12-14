@@ -1,4 +1,4 @@
-# LuaDust
+# LuaDust v0.2
 
 LuaDust is a lua binding C++ library. This library user C++11 features.
 
