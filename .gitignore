@@ -18,3 +18,5 @@ bin
 *.cmake
 
 Makefile
+
+doc
