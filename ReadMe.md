@@ -1,21 +1,21 @@
-## LuaDust
+# LuaDust
 
 LuaDust is a lua binding C++ library. This library user C++11 features.
 
-## Compilation
+### Compilation
 
-### Dependency
+#### Dependency
 
 - [Lua](http://lua.org)
 - [cmake](http://www.cmake.org/cmake/resources/software.html)
 
-### Compile library using cmake
+#### Compile library using cmake
 
 After get lua, you have to configure cmake to generate the Makefile. You have to specify where are the Lua include directory and the library directory.
 
-## Usage
+### Usage
 
-### Bind C++ language
+#### Bind C++ language
 
 ```cpp
 // main.cpp
@@ -50,7 +50,3 @@ Output :
 42.2
 42
 ```
-
-## More
-
-Check the online documentation for more information.
