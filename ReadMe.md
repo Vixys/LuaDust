@@ -82,3 +82,7 @@ Some text
 42
 ref_integer = 42
 ```
+
+### More
+
+For more information please check the [online documentation](http://vixys.github.io/LuaDust).
