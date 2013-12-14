@@ -2,12 +2,20 @@
 
 LuaDust is a lua binding C++ library. This library user C++11 features.
 
+This library was compile on :
+
+- Windows x64 with [TDM-gcc 4.8.1](http://tdm-gcc.tdragon.net/)
+
+Compilation and test on other platform and compiler are not done yet.
+
 ### Compilation
 
 #### Dependency
 
 - [Lua](http://lua.org)
 - [cmake](http://www.cmake.org/cmake/resources/software.html)
+
+You must have a C++11 compiler.
 
 #### Compile library using cmake
 
